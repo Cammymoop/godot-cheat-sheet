@@ -245,6 +245,9 @@ You can see the distortion here in this image but it's very very obvious in moti
 
 To acheive something not terrible we have to combine the benefits of nearest neighbor scaling and regular old bilinear filtering
 
+I've made an example project that shows the implementation of both methods and compares it to just using the builtin scaling options
+check it out [Here](https://cammymoop.itch.io/godot-double-viewport-scaling-demo)
+
 note:
 Since we're going to be setting some viewport sizes manually, the aspect ratio from the window wont propogate down to the
 viewport we're rendering to automatically.
