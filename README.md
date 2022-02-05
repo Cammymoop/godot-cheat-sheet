@@ -8,6 +8,8 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Change the game speed:](#change-the-game-speed)
 
+[Go into/out of fullscreen](#Go-into/out-of-fullscreen)
+
 [Pause the game:](#pause-the-game)
 
 [Get a reference to something from something else:](#get-a-reference-to-something-from-something-else)
@@ -72,6 +74,9 @@ use `Engine.time_scale`
 don't set this to 0 to pause if you want timers that are still able to run.
 use the `get_tree().paused` property and set the Timer's `pause_mode` to `Process`
 
+## Go into/out of fullscreen
+`OS.window_fullscreen`
+
 ## Pause the game
 use `get_tree().paused = true`
 if you want things to still happen while paused set the Node's `pause_mode` to `Process`
@@ -132,7 +137,8 @@ click reimport to update this image
 either delete all the existing .import files for your other images or manually fix them all in the import tab
 new images will now already be non-filtered
 
-See below for how to get a better result when resizing your window to an arbitrary resolution
+See [Down here](#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale)) for how to get a better result when resizing your window to an arbitrary resolution
+
 
 ## Make tiles from an image
 Note if your textures are filtered make sure your tiles have spacing between them so they dont bleed into each other
@@ -233,6 +239,13 @@ Use the Directory class see docs for an example <https://docs.godotengine.org/en
 get_viewport().get_mouse_position()
 
 ## Get a nicer scaling algorith for pixel art (without forcing integer scale)
+Scaling pixel art at a non-integer resolution isn't ideal but when you want to do it, you want consistent pixel sizes
+You can see the distortion here in this image but it's very very obvious in motion
+![good_vs_bad_scaling](scaling_example.png)
+
+To acheive something not terrible we have to combine the benefits of nearest neighbor scaling and regular old bilinear filtering
+
+note:
 Since we're going to be setting some viewport sizes manually, the aspect ratio from the window wont propogate down to the
 viewport we're rendering to automatically.
 You can still manually adjust your render resolution to fit the aspect of the window on a resize though.
@@ -278,8 +291,33 @@ func _ready():
 	
 	get_texture().flags = Texture.FLAG_FILTER
 	get_parent().texture = get_texture()
-	print(get_texture().flags)
-	print(get_parent().texture.flags)
 ```
 
+Since the first render is at a higher than pixel resolution you can move things less than 1 pixel and see the difference visually
+This can be a good or bad thing. To eliminate it, you can use an addition viewport as described in the next section
+
 ### 3 viewport method: (game rendered at actual pixel resolution first)
+Same as the 2 viewport method above but with 2 intermediate viewports
+
+Add all your nodes to the first viewport. I'll call this WorldViewport. Set it's `size` to be your pixel resolution
+
+Add it's texture to a TextureRect (like above but without setting size overrides or the filter flag) I'll call this TextureRect1
+
+Add TextureRect1 into a viewport I'll call this ScalerViewport
+Make sure TextureRect1's anchors and margins are set up to fill the ScalerViewport
+Set TextureRect1's `expand` to true and `stretch_mode` to anything that scales (I just use Keep Aspect Centered again, but it doesn't matter since we're always matching the aspect of our 2 viewports)
+
+Set ScalerViewport's `size` to be some integer multiple of your pizel resolution
+
+Now put ScalerViewport into another TextureRect (TextureRect2)
+
+Add ScalerViewport's texture to TextureRect2 this time with the filter flag set but **without** the size overrides
+
+Make sure TextureRect2 is set up to fill its parent and is a scene root or inside a `Control` scene root
+
+Setup the expand and stretch mode on TextureRect2 just like in the 2 viewport method
+
+This method has similar looking results but the difference is that your first render is at your actual pixel resolution so it's impossible to render anything not aligned to the pixel grid
+
+
+
