@@ -14,7 +14,7 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Get a reference to something from something else:](#get-a-reference-to-something-from-something-else)
 
-[Make/Use a singleton (Script that is automatically instaciated and accessable by any other scripts regardless of scene)](#make/use-a-singleton-(script-that-is-automatically-instaciated-and-accessable-by-any-other-scripts-regardless-of-scene))
+[Make/Use a singleton (Script that is automatically instaciated and accessable by any other scripts regardless of scene)](#make/use-a-singleton-script-that-is-automatically-instaciated-and-accessable-by-any-other-scripts-regardless-of-scene)
 
 [Make my pixel art not blurry](#make-my-pixel-art-not-blurry)
 
@@ -44,7 +44,7 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [How does all this UI stuff even work](#how-does-all-this-ui-stuff-even-work)
 
-[Get or set "Theme Properties" (theme overrides) in code](#get-or-set-"theme-properties"-(theme-overrides)-in-code)
+[Get or set "Theme Properties" (theme overrides) in code](#get-or-set-"theme-properties"-theme-overrides-in-code)
 
 [Save stuff to disk/Read save files](#save-stuff-to-disk/read-save-files)
 
@@ -52,7 +52,7 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Just get the mouse position](#just-get-the-mouse-position)
 
-[Get a nicer scaling algorith for pixel art (without forcing integer scale)](#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale))
+[Get a nicer scaling algorithm for pixel art (without forcing integer scale)](#get-a-nicer-scaling-algorithm-for-pixel-art-without-forcing-integer-scale)
 
 ## Reload the current scene
 `get_tree().reload_current_scene()`
@@ -137,7 +137,7 @@ click reimport to update this image
 either delete all the existing .import files for your other images or manually fix them all in the import tab
 new images will now already be non-filtered
 
-See [Down here](#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale)) for how to get a better result when resizing your window to an arbitrary resolution
+See [Down here](#get-a-nicer-scaling-algorithm-for-pixel-art-(without-forcing-integer-scale)) for how to get a better result when resizing your window to an arbitrary resolution
 
 
 ## Make tiles from an image
@@ -238,7 +238,7 @@ Use the Directory class see docs for an example <https://docs.godotengine.org/en
 ## Just get the mouse position
 get_viewport().get_mouse_position()
 
-## Get a nicer scaling algorith for pixel art (without forcing integer scale)
+## Get a nicer scaling algorithm for pixel art (without forcing integer scale)
 Scaling pixel art at a non-integer resolution isn't ideal but when you want to do it, you want consistent pixel sizes
 You can see the distortion here in this image but it's very very obvious in motion
 ![good_vs_bad_scaling](scaling_example.png)
