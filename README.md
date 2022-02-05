@@ -2,36 +2,60 @@ How do I do X in Godot/gdscript
 
 offical docs: [here](https://docs.godotengine.org/en/stable)
 
-[Reload the current scene:](#reload-the-current-scene:)
-[Generate random numbers:](#generate-random-numbers:)
-[Change the game speed:](#change-the-game-speed:)
-[Pause the game:](#pause-the-game:)
-[Get a reference to something from something else:](#get-a-reference-to-something-from-something-else:)
+[Reload the current scene:](#reload-the-current-scene)
+
+[Generate random numbers:](#generate-random-numbers)
+
+[Change the game speed:](#change-the-game-speed)
+
+[Pause the game:](#pause-the-game)
+
+[Get a reference to something from something else:](#get-a-reference-to-something-from-something-else)
+
 [Make/Use a singleton (Script that is automatically instaciated and accessable by any other scripts regardless of scene)](#make/use-a-singleton-(script-that-is-automatically-instaciated-and-accessable-by-any-other-scripts-regardless-of-scene))
+
 [Make my pixel art not blurry](#make-my-pixel-art-not-blurry)
+
 [Make tiles from an image](#make-tiles-from-an-image)
+
 [Move a specific node not all the other stuff in the same place as it](#move-a-specific-node-not-all-the-other-stuff-in-the-same-place-as-it)
+
 [Make autotiles work](#make-autotiles-work)
+
 [Enable or disable part of an area or physics body](#enable-or-disable-part-of-an-area-or-physics-body)
+
 [Make a control size itself realtive to the game viewport](#make-a-control-size-itself-realtive-to-the-game-viewport)
+
 [Make a prefab](#make-a-prefab)
+
 [Close the game](#close-the-game)
+
 [Use scenes as prefabs](#use-scenes-as-prefabs)
+
 [Change the font or font size used by UI elements](#change-the-font-or-font-size-used-by-ui-elements)
+
 [Generate collision shapes in code](#generate-collision-shapes-in-code)
+
 [Stop hitting phantom corners in a solid surface in a tilemap](#stop-hitting-phantom-corners-in-a-solid-surface-in-a-tilemap)
+
 [Make paralax layers](#make-paralax-layers)
+
 [How does all this UI stuff even work](#how-does-all-this-ui-stuff-even-work)
+
 [Get or set "Theme Properties" (theme overrides) in code](#get-or-set-"theme-properties"-(theme-overrides)-in-code)
+
 [Save stuff to disk/Read save files](#save-stuff-to-disk/read-save-files)
+
 [Find resource files or files in the user filesystem](#find-resource-files-or-files-in-the-user-filesystem)
+
 [Just get the mouse position](#just-get-the-mouse-position)
+
 [Get a nicer scaling algorith for pixel art (without forcing integer scale)](#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale))
 
-## Reload the current scene:
+## Reload the current scene
 `get_tree().reload_current_scene()`
 
-## Generate random numbers:
+## Generate random numbers
 
 `randf()` for a random float from 0 to 1 (I use this one almost exclusively)
 `randomize()` call this once when you start to initialize the RNG with random seed, probably system time or whatever
@@ -43,17 +67,17 @@ but it has more stuff, notably you dont have to make your own `randi_range()` fo
 Godot also implements open simplex noise for noise stuff. (noise has a lot of advantages over RNG)
 see the docs for the OpenSimplexNoise class <https://docs.godotengine.org/en/stable/classes/class_opensimplexnoise.html>
 
-## Change the game speed:
+## Change the game speed
 use `Engine.time_scale`
 don't set this to 0 to pause if you want timers that are still able to run.
 use the `get_tree().paused` property and set the Timer's `pause_mode` to `Process`
 
-## Pause the game:
+## Pause the game
 use `get_tree().paused = true`
 if you want things to still happen while paused set the Node's `pause_mode` to `Process`
 the default pause mode is `Inherit` so child nodes will also still run
 
-## Get a reference to something from something else:
+## Get a reference to something from something else
 if theres behind the scenes code or data that you want accessable from everywhere, see "Make/Use a singleton"
 
 for accessing things like the player, or just any specific ubiquitous object
