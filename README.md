@@ -273,6 +273,7 @@ depending on if you want to crop in or have blank space when the aspect ratio is
 (Make your viewport a child of this texture rect for ease of access and organization, DONT put it into a viewport container)
 
 Set the viewport `size` in the inspector or its script to be your pixel resolution times an integer factor of at least 2
+Set it's render taget -> v flip to on
 
 The result can be larger than your screen, but importantly each pixel is now a NxN cluster of pixels that will look much
 nicer when scaled to our actual window resolution
@@ -303,6 +304,7 @@ This can be a good or bad thing. To eliminate it, you can use an addition viewpo
 Same as the 2 viewport method above but with 2 intermediate viewports
 
 Add all your nodes to the first viewport. I'll call this WorldViewport. Set it's `size` to be your pixel resolution
+Set it's render taget -> v flip to on
 
 Add it's texture to a TextureRect (like above but without setting size overrides or the filter flag) I'll call this TextureRect1
 
@@ -311,6 +313,7 @@ Make sure TextureRect1's anchors and margins are set up to fill the ScalerViewpo
 Set TextureRect1's `expand` to true and `stretch_mode` to anything that scales (I just use Keep Aspect Centered again, but it doesn't matter since we're always matching the aspect of our 2 viewports)
 
 Set ScalerViewport's `size` to be some integer multiple of your pizel resolution
+Set it's render taget -> v flip to on
 
 Now put ScalerViewport into another TextureRect (TextureRect2)
 
