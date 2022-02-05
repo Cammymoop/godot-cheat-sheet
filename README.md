@@ -2,6 +2,32 @@ How do I do X in Godot/gdscript
 
 offical docs: [here](https://docs.godotengine.org/en/stable)
 
+(Reload the current scene:)[#reload-the-current-scene:]
+(Generate random numbers:)[#generate-random-numbers:]
+(Change the game speed:)[#change-the-game-speed:]
+(Pause the game:)[#pause-the-game:]
+(Get a reference to something from something else:)[#get-a-reference-to-something-from-something-else:]
+(Make/Use a singleton (Script that is automatically instaciated and accessable by any other scripts regardless of scene))[#make/use-a-singleton-(script-that-is-automatically-instaciated-and-accessable-by-any-other-scripts-regardless-of-scene)]
+(Make my pixel art not blurry)[#make-my-pixel-art-not-blurry]
+(Make tiles from an image)[#make-tiles-from-an-image]
+(Move a specific node not all the other stuff in the same place as it)[#move-a-specific-node-not-all-the-other-stuff-in-the-same-place-as-it]
+(Make autotiles work)[#make-autotiles-work]
+(Enable or disable part of an area or physics body)[#enable-or-disable-part-of-an-area-or-physics-body]
+(Make a control size itself realtive to the game viewport)[#make-a-control-size-itself-realtive-to-the-game-viewport]
+(Make a prefab)[#make-a-prefab]
+(Close the game)[#close-the-game]
+(Use scenes as prefabs)[#use-scenes-as-prefabs]
+(Change the font or font size used by UI elements)[#change-the-font-or-font-size-used-by-ui-elements]
+(Generate collision shapes in code)[#generate-collision-shapes-in-code]
+(Stop hitting phantom corners in a solid surface in a tilemap)[#stop-hitting-phantom-corners-in-a-solid-surface-in-a-tilemap]
+(Make paralax layers)[#make-paralax-layers]
+(How does all this UI stuff even work)[#how-does-all-this-ui-stuff-even-work]
+(Get or set "Theme Properties" (theme overrides) in code)[#get-or-set-"theme-properties"-(theme-overrides)-in-code]
+(Save stuff to disk/Read save files)[#save-stuff-to-disk/read-save-files]
+(Find resource files or files in the user filesystem)[#find-resource-files-or-files-in-the-user-filesystem]
+(Just get the mouse position)[#just-get-the-mouse-position]
+(Get a nicer scaling algorith for pixel art (without forcing integer scale))[#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale)]
+
 ## Reload the current scene:
 `get_tree().reload_current_scene()`
 
@@ -81,6 +107,8 @@ click the "Preset" button and click "Set as default for Texture"
 click reimport to update this image
 either delete all the existing .import files for your other images or manually fix them all in the import tab
 new images will now already be non-filtered
+
+See below for how to get a better result when resizing your window to an arbitrary resolution
 
 ## Make tiles from an image
 Note if your textures are filtered make sure your tiles have spacing between them so they dont bleed into each other
@@ -176,3 +204,58 @@ put files in the "user://" file system
 
 ## Find resource files or files in the user filesystem
 Use the Directory class see docs for an example <https://docs.godotengine.org/en/stable/classes/class_directory.html>
+
+## Just get the mouse position
+get_viewport().get_mouse_position()
+
+## Get a nicer scaling algorith for pixel art (without forcing integer scale)
+Since we're going to be setting some viewport sizes manually, the aspect ratio from the window wont propogate down to the
+viewport we're rendering to automatically.
+You can still manually adjust your render resolution to fit the aspect of the window on a resize though.
+
+### 2 viewport method: (good results, fake pixel res)
+(Make sure all your pixely textures are imported without filtering)
+
+First add a viewport to you scene and have all the pixely stuff as a child of that viewport
+All of the children will now render to the viewport
+
+Make the root of your scene a control node, and set it up to cover the whole screen (anchor left 0, top 0, right 1, bottom 1, all margins 0)
+
+Make a TextureRect, or have your scene root be a texture rect, that also covers the whole screen.
+
+This Texture rect will receive what our viewport is rendering which will be at a nice integer scale of our pixel resolution.
+It will then scale itself to fit into the "regular" viewport that godot creates automatically.
+And it will do it with some filtering so we can get the goldilocks zone of just a little blur.
+
+Set it's `expand` property to true
+and set the Stretch Mode to something that stretches, you probably want "Keep aspect centered" or "Keep aspect covered"
+depending on if you want to crop in or have blank space when the aspect ratio is wrong.
+(Make your viewport a child of this texture rect for ease of access and organization, DONT put it into a viewport container)
+
+Set the viewport `size` in the inspector or its script to be your pixel resolution times an integer factor of at least 2
+
+The result can be larger than your screen, but importantly each pixel is now a NxN cluster of pixels that will look much
+nicer when scaled to our actual window resolution
+
+Make a script that runs when the scene loads and does this:
+- set the viewport size override to the pixel resolution (now stuff will render into the viewport at the right size)
+- set the viewport texture flag for filtering on scale e.g. `get_texture().flags = Texture.FLAG_FILTER`
+- set the TextureRect's texture to the viewport texture
+
+example script on the viewport which is a child of the TextureRect:
+pixel resolution is 384x384 and the Viewports `size` is 1536x1536 (4x)
+(tip: you can type `384*4` into the inspector and it will multiply for you)
+```
+extends Viewport
+
+func _ready():
+	set_size_override(true, Vector2(384, 384))
+	set_size_override_stretch(true)
+	
+	get_texture().flags = Texture.FLAG_FILTER
+	get_parent().texture = get_texture()
+	print(get_texture().flags)
+	print(get_parent().texture.flags)
+```
+
+### 3 viewport method: (game rendered at actual pixel resolution first)
