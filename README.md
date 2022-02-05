@@ -2,31 +2,31 @@ How do I do X in Godot/gdscript
 
 offical docs: [here](https://docs.godotengine.org/en/stable)
 
-(Reload the current scene:)[#reload-the-current-scene:]
-(Generate random numbers:)[#generate-random-numbers:]
-(Change the game speed:)[#change-the-game-speed:]
-(Pause the game:)[#pause-the-game:]
-(Get a reference to something from something else:)[#get-a-reference-to-something-from-something-else:]
-(Make/Use a singleton (Script that is automatically instaciated and accessable by any other scripts regardless of scene))[#make/use-a-singleton-(script-that-is-automatically-instaciated-and-accessable-by-any-other-scripts-regardless-of-scene)]
-(Make my pixel art not blurry)[#make-my-pixel-art-not-blurry]
-(Make tiles from an image)[#make-tiles-from-an-image]
-(Move a specific node not all the other stuff in the same place as it)[#move-a-specific-node-not-all-the-other-stuff-in-the-same-place-as-it]
-(Make autotiles work)[#make-autotiles-work]
-(Enable or disable part of an area or physics body)[#enable-or-disable-part-of-an-area-or-physics-body]
-(Make a control size itself realtive to the game viewport)[#make-a-control-size-itself-realtive-to-the-game-viewport]
-(Make a prefab)[#make-a-prefab]
-(Close the game)[#close-the-game]
-(Use scenes as prefabs)[#use-scenes-as-prefabs]
-(Change the font or font size used by UI elements)[#change-the-font-or-font-size-used-by-ui-elements]
-(Generate collision shapes in code)[#generate-collision-shapes-in-code]
-(Stop hitting phantom corners in a solid surface in a tilemap)[#stop-hitting-phantom-corners-in-a-solid-surface-in-a-tilemap]
-(Make paralax layers)[#make-paralax-layers]
-(How does all this UI stuff even work)[#how-does-all-this-ui-stuff-even-work]
-(Get or set "Theme Properties" (theme overrides) in code)[#get-or-set-"theme-properties"-(theme-overrides)-in-code]
-(Save stuff to disk/Read save files)[#save-stuff-to-disk/read-save-files]
-(Find resource files or files in the user filesystem)[#find-resource-files-or-files-in-the-user-filesystem]
-(Just get the mouse position)[#just-get-the-mouse-position]
-(Get a nicer scaling algorith for pixel art (without forcing integer scale))[#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale)]
+[Reload the current scene:](#reload-the-current-scene:)
+[Generate random numbers:](#generate-random-numbers:)
+[Change the game speed:](#change-the-game-speed:)
+[Pause the game:](#pause-the-game:)
+[Get a reference to something from something else:](#get-a-reference-to-something-from-something-else:)
+[Make/Use a singleton (Script that is automatically instaciated and accessable by any other scripts regardless of scene)](#make/use-a-singleton-(script-that-is-automatically-instaciated-and-accessable-by-any-other-scripts-regardless-of-scene))
+[Make my pixel art not blurry](#make-my-pixel-art-not-blurry)
+[Make tiles from an image](#make-tiles-from-an-image)
+[Move a specific node not all the other stuff in the same place as it](#move-a-specific-node-not-all-the-other-stuff-in-the-same-place-as-it)
+[Make autotiles work](#make-autotiles-work)
+[Enable or disable part of an area or physics body](#enable-or-disable-part-of-an-area-or-physics-body)
+[Make a control size itself realtive to the game viewport](#make-a-control-size-itself-realtive-to-the-game-viewport)
+[Make a prefab](#make-a-prefab)
+[Close the game](#close-the-game)
+[Use scenes as prefabs](#use-scenes-as-prefabs)
+[Change the font or font size used by UI elements](#change-the-font-or-font-size-used-by-ui-elements)
+[Generate collision shapes in code](#generate-collision-shapes-in-code)
+[Stop hitting phantom corners in a solid surface in a tilemap](#stop-hitting-phantom-corners-in-a-solid-surface-in-a-tilemap)
+[Make paralax layers](#make-paralax-layers)
+[How does all this UI stuff even work](#how-does-all-this-ui-stuff-even-work)
+[Get or set "Theme Properties" (theme overrides) in code](#get-or-set-"theme-properties"-(theme-overrides)-in-code)
+[Save stuff to disk/Read save files](#save-stuff-to-disk/read-save-files)
+[Find resource files or files in the user filesystem](#find-resource-files-or-files-in-the-user-filesystem)
+[Just get the mouse position](#just-get-the-mouse-position)
+[Get a nicer scaling algorith for pixel art (without forcing integer scale)](#get-a-nicer-scaling-algorith-for-pixel-art-(without-forcing-integer-scale))
 
 ## Reload the current scene:
 `get_tree().reload_current_scene()`
