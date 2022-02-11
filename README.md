@@ -60,6 +60,16 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 ## Generate random numbers
 
 `randf()` for a random float from 0 to 1 (I use this one almost exclusively)
+I just learned that it generates random numbers from 0 to 1 **inclusively** so be careful if you are using this to generate an int range with `floor()`
+here's a method I created for generating a number that avoids the rare case of `randf()` returning 1 (and a function for an int range that goes with it):
+```
+func exclusive_randf() -> float:
+	var r: = randf()
+	return 0.0 if r == 1.0 else r
+
+func random_int_range(start: int, end_exclusive: int) -> int:
+	return start + int(floor(exclusive_randf() * (end_exclusive - start)))
+```
 `randomize()` call this once when you start to initialize the RNG with random seed, probably system time or whatever
 use `seed(some_integer)` to set the RNG seed manually
 
