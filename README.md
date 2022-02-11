@@ -59,7 +59,8 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 ## Generate random numbers
 
-`randf()` for a random float from 0 to 1 (I use this one almost exclusively)
+`randf()` for a random float from 0 to 1 inclusive, and it's friend `rand_range(a, b)` which generates a random float in the range a to b again inclusive.
+
 I just learned that it generates random numbers from 0 to 1 **inclusively** so be careful if you are using this to generate an int range with `floor()`
 here's a method I created for generating a number that avoids the rare case of `randf()` returning 1 (and a function for an int range that goes with it):
 ```
