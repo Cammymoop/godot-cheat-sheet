@@ -152,8 +152,11 @@ See [Down here](#get-a-nicer-scaling-algorithm-for-pixel-art-(without-forcing-in
 
 
 ## Make tiles from an image
-Note if your textures are filtered make sure your tiles have spacing between them so they dont bleed into each other
+<details>
+	<summary>Click to expand</summary>
 
+Note if your textures are filtered make sure your tiles have spacing between them so they dont bleed into each other
+	
 First create a tilemap node then in the inspector click the tile set arrow and click "new tileset"
 when you want to edit the tileset just click the tileset in the inspector for the tilemap
 
@@ -170,12 +173,16 @@ click the "new rectangle" or "new polygon" button and draw the shape
 
 the collision shapes are automatically created by the tilemap wherever you place the tiles so if you need to change the collision properties do it on the tilemap
 you can set individual tiles to be one way collision in the inspector
+</details>
 
 ## Move a specific node not all the other stuff in the same place as it
 click the move tool up by the cursor icon at the top
 switch back to the select tool to be able to select stuff by clicking it
 
 ## Make autotiles work
+<details>
+	<summary>Click to expand</summary>
+	
 Once you've drawn enough tiles to use for the autotiler you need to set up the bitmask to get them to work
 click new auto tile
 drag the region over all the tile variants
@@ -189,6 +196,7 @@ if you dont want to make tons of tile variations (ignore internal corners) just 
 ![EZ bitmask](easy_bitmask.png)
 
 if you're drawing autotiles and they look all broken it's probably because your brush is mirrored or rotated, hit the little paintbrush at the top right to reset the transform
+</details>
 
 ## Enable or disable part of an area or physics body
 you can disable collisionshape nodes to make the shape they hold stop interacting with stuff
@@ -258,6 +266,9 @@ To acheive something not terrible we have to combine the benefits of nearest nei
 
 I've made an example project that shows the implementation of both methods and compares it to just using the builtin scaling options
 check it out [Here](https://cammymoop.itch.io/godot-double-viewport-scaling-demo)
+
+<details>
+  <summary>Explanation of how it works here (click to expand)</summary>
 
 note:
 Since we're going to be setting some viewport sizes manually, the aspect ratio from the window wont propogate down to the
@@ -335,6 +346,6 @@ Make sure TextureRect2 is set up to fill its parent and is a scene root or insid
 Setup the expand and stretch mode on TextureRect2 just like in the 2 viewport method
 
 This method has similar looking results but the difference is that your first render is at your actual pixel resolution so it's impossible to render anything not aligned to the pixel grid
-
+</details>
 
 
