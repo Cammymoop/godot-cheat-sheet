@@ -213,9 +213,11 @@ make it the root node of the scene
 is there any other way to do this? that would be nice...
 
 ## Open a FileDialog to save with a specific name already in the box
-First set the directory and file name you want with current_path or current_dir, current_file
-Then call popup() (or popup_centered() or whichever version)
-After calling popup call deselect_items(), it should now actually show your specified file name in the input box
+First set the directory and file name you want with `current_path` or `current_dir` and `current_file`
+
+Then call `popup()` (or `popup_centered()` or whichever version)
+
+After calling popup call `deselect_items()`, it should now actually show your specified file name in the input box
 
 ## Make a prefab
 use scenes
