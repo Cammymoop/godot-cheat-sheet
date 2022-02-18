@@ -26,7 +26,7 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Enable or disable part of an area or physics body](#enable-or-disable-part-of-an-area-or-physics-body)
 
-[Make a control size itself realtive to the game viewport](#make-a-control-size-itself-realtive-to-the-game-viewport)
+[Make a control size itself realtive to the viewport](#make-a-control-size-itself-realtive-to-the-viewport)
 
 [Open a FileDialog to save with a specific name already in the box](#open-a-filedialog-to-save-with-a-specific-name-already-in-the-box)
 
@@ -208,9 +208,12 @@ instead of setting it directly
 This is a good way to change the size of the player's physical body for example (having 2 collision shapes that you switch between)
 just keep in mind it wont be changed until the next idle frame
 
-## Make a control size itself realtive to the game viewport
-make it the root node of the scene
-is there any other way to do this? that would be nice...
+## Make a control size itself realtive to the viewport
+You can easily do this if it's the root node of the scene
+
+Otherwise you can do this via gdscript by:
+* Set it as a toplevel cavas item with `set_as_toplevel(true)`
+* After doing that, update it's margins appropriately since they will be auto updated to keep its size the same
 
 ## Open a FileDialog to save with a specific name already in the box
 First set the directory and file name you want with `current_path` or `current_dir` and `current_file`
