@@ -28,6 +28,8 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Make a control size itself realtive to the game viewport](#make-a-control-size-itself-realtive-to-the-game-viewport)
 
+[Open a FileDialog to save with a specific name already in the box](#open-a-filedialog-to-save-with-a-specific-name-already-in-the-box)
+
 [Make a prefab](#make-a-prefab)
 
 [Close the game](#close-the-game)
@@ -209,6 +211,11 @@ just keep in mind it wont be changed until the next idle frame
 ## Make a control size itself realtive to the game viewport
 make it the root node of the scene
 is there any other way to do this? that would be nice...
+
+## Open a FileDialog to save with a specific name already in the box
+First set the directory and file name you want with current_path or current_dir, current_file
+Then call popup() (or popup_centered() or whichever version)
+After calling popup call deselect_items(), it should now actually show your specified file name in the input box
 
 ## Make a prefab
 use scenes
