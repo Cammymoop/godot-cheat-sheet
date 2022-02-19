@@ -209,11 +209,9 @@ This is a good way to change the size of the player's physical body for example 
 just keep in mind it wont be changed until the next idle frame
 
 ## Make a control size itself realtive to the viewport
-You can easily do this if it's the root node of the scene
+You can easily do this if it's the root node of the scene or a direct child of a canvas layer
 
-Otherwise you can do this via gdscript by:
-* Set it as a toplevel cavas item with `set_as_toplevel(true)`
-* After doing that, update it's margins appropriately since they will be auto updated to keep its size the same
+Otherwise you can use a script that listens to the viewport's `size_changed` signal and manually do the sizing yourself
 
 ## Open a FileDialog to save with a specific name already in the box
 First set the directory and file name you want with `current_path` or `current_dir` and `current_file`
