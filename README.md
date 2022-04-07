@@ -8,7 +8,9 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Change the game speed:](#change-the-game-speed)
 
-[Go into/out of fullscreen](#Go-into/out-of-fullscreen)
+[Go into/out of fullscreen](#Go-intoout-of-fullscreen)
+
+[Get a server build with debug enabled](#Get-a-server-build-with-debug-enabled)
 
 [Pause the game:](#pause-the-game)
 
@@ -48,7 +50,7 @@ offical docs: [here](https://docs.godotengine.org/en/stable)
 
 [Get or set "Theme Properties" (theme overrides) in code](#get-or-set-"theme-properties"-theme-overrides-in-code)
 
-[Save stuff to disk/Read save files](#save-stuff-to-disk/read-save-files)
+[Save stuff to disk/Read save files](#save-stuff-to-diskread-save-files)
 
 [Find resource files or files in the user filesystem](#find-resource-files-or-files-in-the-user-filesystem)
 
@@ -89,6 +91,9 @@ use the `get_tree().paused` property and set the Timer's `pause_mode` to `Proces
 
 ## Go into/out of fullscreen
 `OS.window_fullscreen`
+
+## Get a server build with debug enabled
+The "headless" build of godot has debug enabled, so use that one instead of the server build while debugging
 
 ## Pause the game
 use `get_tree().paused = true`
